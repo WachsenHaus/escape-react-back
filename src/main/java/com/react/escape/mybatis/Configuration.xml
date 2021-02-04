@@ -5,9 +5,11 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.react.escape.review.dto.ReviewDto" alias="reviewDto"/>
+		<typeAlias type="com.react.escape.notice.dto.NoticeDto" alias="noticeDto"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="com/react/escape/mybatis/ReviewMapper.xml"/>
+		<mapper resource="com/react/escape/mybatis/NoticeMapper.xml"/>
 	</mappers>		
 </configuration>
