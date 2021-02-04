@@ -16,16 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-	@RequestMapping("/home")
-	public String home() {
-		return "index";
-	}
+	
 	@RequestMapping("/")
 	public String local() {
-		return "index";
-	}
-	@RequestMapping("/escape/home")
-	public String escapehome() {
 		return "index";
 	}
 }
