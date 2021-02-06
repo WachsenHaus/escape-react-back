@@ -6,10 +6,14 @@
 	<typeAliases>
 		<typeAlias type="com.react.escape.review.dto.ReviewDto" alias="reviewDto"/>
 		<typeAlias type="com.react.escape.notice.dto.NoticeDto" alias="noticeDto"/>
+		<typeAlias type="com.react.escape.timetable.dto.TimetableDto" alias="timetableDto"/>
+		<typeAlias type="com.react.escape.timetable.dto.ResInfoDto" alias="resinfoDto"/>
+
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="com/react/escape/mybatis/ReviewMapper.xml"/>
 		<mapper resource="com/react/escape/mybatis/NoticeMapper.xml"/>
+		<mapper resource="com/react/escape/mybatis/TimetableMapper.xml"/>
 	</mappers>		
 </configuration>

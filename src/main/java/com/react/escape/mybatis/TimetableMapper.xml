@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="timetable">
+
+	<select id="getTable" parameterType="timetableDto" resultType="timetableDto">
+		SELECT *
+		FROM res_state
+		WHERE bname=#{bname} AND resdate=#{resdate}
+		ORDER BY time ASC
+	</select>
+	
+	<select id="getList" parameterType="timetableDto" resultType="timetableDto">
+		SELECT *
+		FROM res_state
+		WHERE bname=#{bname} AND thema=#{thema} AND resdate=#{resdate}
+		ORDER BY time ASC
+	</select>
+	
+	<insert id="resInsert" parameterType="resinfoDto" >
+		INSERT INTO res_info
+		(res_no,res_name,resdate,time,bname,thema,phone,cost,personal)
+		VALUES(res_seq.nextval,#{res_name},#{resdate},#{time},#{bname},#{thema},#{phone},#{cost},#{personal}) 
+	</insert>
+	
+	<update id="soldoutUpdate" parameterType="resinfoDto">
+		UPDATE res_state
+		SET state = '매진'
+		WHERE bname=#{bname} AND resdate=#{resdate} AND time=#{time} AND thema=#{thema}
+	</update>
+	
+	<update id="statePossible" parameterType="timetableDto">
+		<![CDATA[
+		UPDATE res_state
+		SET state = '예약하기'
+		WHERE bname=#{bname} AND resdate=#{resdate} AND blocktime < TO_CHAR(SYSDATE,'HH24:MI:SS') AND state='예약진행중'  
+		]]>
+	</update>
+	
+	<update id="statePossible2" parameterType="timetableDto">
+		<![CDATA[
+		UPDATE res_state
+		SET state = '예약하기'
+		WHERE bname=#{bname} AND thema=#{thema} AND resdate=#{resdate} AND blocktime < TO_CHAR(SYSDATE,'HH24:MI:SS') AND state='예약진행중' 
+		]]>
+	</update>
+	
+	<update id="stateUpdate" parameterType="resinfoDto">
+		UPDATE res_state
+		SET state = '예약진행중'
+		WHERE bname=#{bname} AND resdate=#{resdate} AND time=#{time} AND thema=#{thema}
+	</update>
+	
+	<update id="updateTime" parameterType="resinfoDto">
+		UPDATE res_state
+		SET blocktime= TO_CHAR(SYSDATE+5/(24*60),'HH24:MI:SS')
+		WHERE bname=#{bname} AND  resdate=#{resdate} AND time=#{time} AND thema=#{thema}
+	</update>
+	
+	<select id="getResinfo" parameterType="resinfoDto" resultType="resinfoDto">
+		SELECT *
+		FROM res_info
+		WHERE bname=#{bname} AND  resdate=#{resdate} AND time=#{time} AND thema=#{thema}
+	</select>
+	
+	<select id="getResNumber" parameterType="resinfoDto" resultType="String">
+		SELECT res_no
+		FROM res_info
+		WHERE bname=#{bname} AND  resdate=#{resdate} AND time=#{time} AND thema=#{thema}
+	</select>
+</mapper>
