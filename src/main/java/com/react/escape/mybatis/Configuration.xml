@@ -9,7 +9,6 @@
 		<typeAlias type="com.react.escape.timetable.dto.TimetableDto" alias="timetableDto"/>
 		<typeAlias type="com.react.escape.timetable.dto.ResInfoDto" alias="resinfoDto"/>
 		<typeAlias type="com.react.escape.confirm.dto.ConfirmDto" alias="confirmDto"/>
-
 	</typeAliases>
 
 	<mappers>
