@@ -166,4 +166,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return result;
 	}
 
+	@Override
+	public void saveContent(NoticeDto dto) {
+		noticeDao.insert(dto);
+	}
+
 }

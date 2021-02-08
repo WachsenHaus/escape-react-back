@@ -10,8 +10,7 @@ import com.react.escape.notice.dto.NoticeDto;
 
 @Repository
 public class NoticeDaoImpl implements NoticeDao{
-	@
-	Autowired
+	@Autowired
 	private SqlSession session;
 
 	@Override
@@ -41,6 +40,12 @@ public class NoticeDaoImpl implements NoticeDao{
 	@Override
 	public void delete(int num) {
 		session.delete("notice.delete", num);
+	}
+
+	@Override
+	public void insert(NoticeDto dto) {
+		session.insert("notice.insert", dto);
+
 	}
 	
 }

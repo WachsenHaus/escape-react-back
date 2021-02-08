@@ -11,5 +11,6 @@ public interface NoticeDao {
 	public NoticeDto getReview_AJAX(int num);
 	public void update(NoticeDto dto);
 	public void delete(int num);
+	public void insert(NoticeDto dto);
 
 }

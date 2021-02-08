@@ -12,5 +12,6 @@ public interface NoticeService {
 	public Map<String, Object> getListPage_AJAX(HttpServletRequest request);
 	public NoticeDto getDetail_AJAX(HttpServletRequest request);
 	public boolean updateContent_AJAX(HttpServletRequest request, NoticeDto dto);
+	public void saveContent(NoticeDto dto);
 
 }
