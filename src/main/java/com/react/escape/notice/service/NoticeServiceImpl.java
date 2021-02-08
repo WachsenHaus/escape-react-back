@@ -19,7 +19,7 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private NoticeDao noticeDao;
 	
-	final int PAGE_ROW_COUNT=30;
+	final int PAGE_ROW_COUNT=10;
 	final int PAGE_DISPLAY_COUNT=5;
 	
 	
@@ -54,6 +54,7 @@ public class NoticeServiceImpl implements NoticeService {
 		NoticeDto dto=new NoticeDto();
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
+		dto.setBranch(request.getParameter("branch"));
 		
 		if(!keyword.equals("")){ //만일 키워드가 넘어온다면 
 			if(condition.equals("title_content")){
@@ -109,6 +110,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
+		dto.setBranch(branch);
 		
 		if(!keyword.equals("")){
 			if(condition.equals("title_content")){

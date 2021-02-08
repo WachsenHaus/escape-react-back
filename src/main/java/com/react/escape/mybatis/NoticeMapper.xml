@@ -9,17 +9,20 @@
 			FROM
 				(SELECT branch,num,writer,title,content,viewCount,
 				TO_CHAR(regdate,'MM-DD') AS regdate
-				FROM event
+				FROM event 
 				<choose>
 					<when test="title != null and content != null">
 						WHERE title LIKE '%'||#{title}||'%' 
-						OR content LIKE '%'||#{content}||'%'
+						OR content LIKE '%'||#{content}||'%' and branch=#{branch}
 					</when>
 					<when test="title != null">
-						WHERE title LIKE '%'||#{title}||'%'
+						WHERE title LIKE '%'||#{title}||'%' and branch=#{branch}
 					</when>
 					<when test="writer != null">
-						WHERE writer LIKE '%'||#{writer}||'%'
+						WHERE writer LIKE '%'||#{writer}||'%' and branch=#{branch}
+					</when>
+					<when test="writer == null and content == null">
+						WHERE branch=#{branch}
 					</when>
 				</choose>
 				ORDER BY num DESC) result1)
@@ -58,13 +61,13 @@
 		<choose>
 			<when test="title != null and content != null">
 				WHERE title LIKE '%'||#{title}||'%' 
-				OR content LIKE '%'||#{content}||'%'
+				OR content LIKE '%'||#{content}||'%' and branch=#{branch}
 			</when>
 			<when test="title != null">
-				WHERE title LIKE '%'||#{title}||'%'
+				WHERE title LIKE '%'||#{title}||'%' and branch=#{branch}
 			</when>
 			<when test="writer != null">
-				WHERE writer LIKE '%'||#{writer}||'%'
+				WHERE writer LIKE '%'||#{writer}||'%' and branch=#{branch}
 			</when>
 		</choose>	
 	</select>	
